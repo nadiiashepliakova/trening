@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Світло-зелена сторінка</title>
+    <title>Інформатика 10 клас основний рівень</title>
     <style>
         /* Скидання стилів */
         * {
@@ -30,28 +31,7 @@
 
         header h1 {
             color: #1b5e20;
-        }
-
-        /* Навігація */
-        nav {
-            background-color: #81c784;
-            padding: 12px 40px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 24px;
-        }
-
-        nav a {
-            color: #1b5e20;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #ffffff;
+            line-height: 1.3;
         }
 
         /* Основна частина */
@@ -59,6 +39,46 @@
             flex: 1;
             padding: 40px;
             background-color: #f1f8e9; /* майже білий із зеленим відтінком */
+        }
+
+        main h2 {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        /* Список файлів */
+        .file-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0; /* вирівнювання за лівим краєм */
+        }
+
+        .file-list li {
+            margin-bottom: 12px;
+        }
+
+        .file-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background-color: #c8e6c9;
+            color: #1b5e20;
+            text-decoration: none;
+            border-radius: 8px;
+            border-left: 4px solid #66bb6a;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .file-list a:hover {
+            background-color: #a5d6a7;
+            transform: translateX(4px);
+        }
+
+        .file-list a::before {
+            content: "📎";
+            font-size: 1.1em;
         }
 
         /* Підвал */
@@ -74,24 +94,37 @@
 <body>
 
     <header>
-        <h1>Заголовок сторінки</h1>
+        <h1>
+            Інформатика<br>
+            10 клас<br>
+            основний рівень
+        </h1>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Головна</a></li>
-            <li><a href="#">Про нас</a></li>
-            <li><a href="#">Послуги</a></li>
-            <li><a href="#">Контакти</a></li>
-        </ul>
-    </nav>
-
     <main>
-        <!-- Тут буде основний контент -->
+        <h2>Зміст</h2>
+
+        <ul class="file-list">
+            <li>
+                <a href="files/urok-1.pdf" target="_blank" rel="noopener noreferrer">
+                    Урок 1. Вступ до інформатики (PDF)
+                </a>
+            </li>
+            <li>
+                <a href="files/urok-2.docx" target="_blank" rel="noopener noreferrer">
+                    Урок 2. Апаратне забезпечення (DOCX)
+                </a>
+            </li>
+            <li>
+                <a href="files/praktychna-1.pdf" target="_blank" rel="noopener noreferrer">
+                    Практична робота №1 (PDF)
+                </a>
+            </li>
+        </ul>
     </main>
 
     <footer>
-        <p>&copy; 2024 Усі права захищені</p>
+        <p>&copy; 2026 Усі права захищені</p>
     </footer>
 
 </body>
