@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Світло-зелена сторінка</title>
+    <style>
+        /* Скидання стилів */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #e8f5e9; /* дуже світлий зелений */
+            color: #2e7d32; /* темно-зелений текст */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #a5d6a7; /* світло-зелений */
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #1b5e20;
+        }
+
+        /* Навігація */
+        nav {
+            background-color: #81c784;
+            padding: 12px 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #1b5e20;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Основна частина */
+        main {
+            flex: 1;
+            padding: 40px;
+            background-color: #f1f8e9; /* майже білий із зеленим відтінком */
+        }
+
+        /* Підвал */
+        footer {
+            background-color: #c8e6c9;
+            padding: 20px 40px;
+            text-align: center;
+            color: #2e7d32;
+            border-top: 2px solid #a5d6a7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Заголовок сторінки</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Головна</a></li>
+            <li><a href="#">Про нас</a></li>
+            <li><a href="#">Послуги</a></li>
+            <li><a href="#">Контакти</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Тут буде основний контент -->
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Усі права захищені</p>
+    </footer>
+
+</body>
+</html>
