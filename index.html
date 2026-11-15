@@ -3,7 +3,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Тренінг: Від хаосу у файлах до структурованого цифрового посібника</title>
     <style>
         * {
@@ -12,11 +12,16 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
             background-color: #e8f5e9;
             color: #2e7d32;
             min-height: 100vh;
+            min-height: 100dvh; /* ДОДАНО: коректна висота на мобільних */
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -39,6 +44,7 @@
             justify-content: center;
             animation: fadeIn 0.4s ease;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* ДОДАНО: плавний скрол на iOS */
         }
 
         .slide.active {
@@ -188,19 +194,19 @@
             font-size: 0.95em;
             color: #1b5e20;
         }
-code {
+
+        code {
             background-color: #f1f8e9;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 0.95em;
             color: #1b5e20;
+            word-break: break-word; /* ДОДАНО: запобігає виходу довгих кодів за межі */
         }
-
 
         .note {
             max-width: 900px;
-            margin: 14px auto 0;
-margin-bottom: 14px;
+            margin: 14px auto;
             padding: 12px 16px;
             background-color: #fff9c4;
             border-left: 4px solid #fbc02d;
@@ -246,7 +252,7 @@ margin-bottom: 14px;
 
         /* Порівняння до/після */
         .compare {
-            display: flex;
+            display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
             max-width: 900px;
@@ -286,6 +292,8 @@ margin-bottom: 14px;
             align-items: center;
             border-top: 2px solid #a5d6a7;
             z-index: 10;
+            gap: 12px;
+            flex-wrap: wrap; /* ДОДАНО: дозволяє перенос на вузьких екранах */
         }
 
         .progress {
@@ -310,6 +318,7 @@ margin-bottom: 14px;
             cursor: pointer;
             transition: background-color 0.2s;
             font-family: inherit;
+            white-space: nowrap; /* ДОДАНО: кнопки не переносяться */
         }
 
         button:hover:not(:disabled) {
@@ -333,11 +342,319 @@ margin-bottom: 14px;
             z-index: 20;
         }
 
+        /* ============================================================
+           ДОДАНО: АДАПТИВНІСТЬ (без зміни стилю)
+           ============================================================ */
+
+        /* --- Планшети (max-width: 900px) --- */
+        @media (max-width: 900px) {
+            .slide {
+                padding: 30px 36px;
+            }
+
+            .slide h2 {
+                font-size: 1.7em;
+            }
+
+            .title-slide h2 {
+                font-size: 2em;
+            }
+
+            .compare {
+                gap: 18px;
+            }
+        }
+
+        /* --- Планшети та великі телефони (max-width: 700px) --- */
         @media (max-width: 700px) {
-            .slide { padding: 30px 24px; }
-            .slide h2 { font-size: 1.5em; }
-            .compare { grid-template-columns: 1fr; }
-            .steps li { font-size: 0.95em; }
+            .slide {
+                padding: 26px 20px;
+            }
+
+            .slide h2 {
+                font-size: 1.45em;
+                margin-bottom: 16px;
+            }
+
+            .slide h3 {
+                font-size: 1.15em;
+            }
+
+            .slide p {
+                font-size: 1.05em;
+            }
+
+            .slide ul, .slide ol {
+                font-size: 1em;
+                padding-left: 18px;
+            }
+
+            .title-slide h2 {
+                font-size: 1.7em;
+            }
+
+            .title-slide .subtitle {
+                font-size: 1.1em;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .steps li {
+                font-size: 0.95em;
+                padding: 12px 12px 12px 52px;
+            }
+
+            .steps li::before {
+                left: 12px;
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                font-size: 0.9em;
+            }
+
+            .compare {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 12px 20px;
+            }
+
+            button {
+                padding: 10px 18px;
+                font-size: 0.95em;
+            }
+
+            .note {
+                font-size: 0.92em;
+                padding: 10px 12px;
+            }
+        }
+
+        /* --- Мобільні телефони (max-width: 480px) --- */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 20px 14px;
+                justify-content: flex-start; /* ДОДАНО: контент згори, якщо не влазить */
+                padding-top: 28px;
+            }
+
+            .slide h2 {
+                font-size: 1.25em;
+                margin-bottom: 14px;
+            }
+
+            .slide h3 {
+                font-size: 1.05em;
+            }
+
+            .slide p {
+                font-size: 0.98em;
+                line-height: 1.45;
+            }
+
+            .slide ul, .slide ol {
+                font-size: 0.95em;
+                padding-left: 16px;
+            }
+
+            .title-slide h2 {
+                font-size: 1.45em;
+                margin-bottom: 16px;
+            }
+
+            .title-slide .subtitle {
+                font-size: 1em;
+            }
+
+            .title-slide p[align="right"] {
+                text-align: center !important; /* На мобільних тренери по центру */
+                font-size: 0.95em;
+            }
+
+            .card {
+                padding: 14px;
+                border-radius: 10px;
+            }
+
+            .card strong {
+                font-size: 1em;
+            }
+
+            .card span {
+                font-size: 0.9em;
+            }
+
+            .card .num {
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                font-size: 0.9em;
+            }
+
+            .steps li {
+                font-size: 0.9em;
+                padding: 10px 10px 10px 46px;
+                border-radius: 8px;
+            }
+
+            .steps li::before {
+                left: 10px;
+                width: 24px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 0.82em;
+            }
+
+            .note {
+                font-size: 0.88em;
+                padding: 10px 12px;
+                margin: 10px auto;
+            }
+
+            .file-list a {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            .compare > div {
+                padding: 14px;
+            }
+
+            footer {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .progress {
+                font-size: 0.82em;
+            }
+
+            button {
+                padding: 9px 14px;
+                font-size: 0.88em;
+                border-radius: 6px;
+            }
+
+            .nav-buttons {
+                gap: 8px;
+            }
+        }
+
+        /* --- Дуже малі екрани (max-width: 360px) --- */
+        @media (max-width: 360px) {
+            .slide {
+                padding: 16px 10px;
+            }
+
+            .slide h2 {
+                font-size: 1.1em;
+            }
+
+            .title-slide h2 {
+                font-size: 1.25em;
+            }
+
+            .steps li {
+                font-size: 0.85em;
+                padding: 9px 8px 9px 42px;
+            }
+
+            .steps li::before {
+                left: 8px;
+                width: 22px;
+                height: 22px;
+                line-height: 22px;
+                font-size: 0.78em;
+            }
+
+            button {
+                padding: 8px 12px;
+                font-size: 0.82em;
+            }
+
+            .progress {
+                font-size: 0.78em;
+            }
+        }
+
+        /* --- Ландшафтна орієнтація на низьких екранах (телефони) --- */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .slide {
+                justify-content: flex-start;
+                padding: 16px 24px;
+            }
+
+            .slide h2 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .slide p,
+            .slide ul,
+            .slide ol {
+                font-size: 0.92em;
+            }
+
+            .steps li {
+                padding: 8px 10px 8px 46px;
+                margin-bottom: 7px;
+                font-size: 0.9em;
+            }
+
+            footer {
+                padding: 8px 16px;
+            }
+
+            button {
+                padding: 7px 14px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* --- Дуже великі екрани (min-width: 1600px) --- */
+        @media (min-width: 1600px) {
+            .slide h2 {
+                font-size: 2.6em;
+            }
+
+            .title-slide h2 {
+                font-size: 3.2em;
+            }
+
+            .slide p,
+            .slide ul,
+            .slide ol {
+                font-size: 1.25em;
+            }
+
+            .steps li {
+                font-size: 1.15em;
+                padding: 18px 20px 18px 68px;
+            }
+
+            .steps li::before {
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                left: 20px;
+                font-size: 1em;
+            }
+
+            .card {
+                padding: 26px;
+            }
+
+            .card strong {
+                font-size: 1.15em;
+            }
+
+            .card span {
+                font-size: 1.05em;
+            }
         }
     </style>
 </head>
@@ -351,9 +668,8 @@ margin-bottom: 14px;
         <section class="slide title-slide active">
             <h2>Від хаосу в файлах<br>до структурованого цифрового посібника</h2>
             <p class="subtitle">Практичний тренінг для вчителів ліцею</p>
-<p></p>
- <p align="right">Тренери: Юлія Осталецька та Надія Шеплякова</p>
-
+            <p></p>
+            <p align="right">Тренери: Юлія Осталецька та Надія Шеплякова</p>
         </section>
 
         <!-- Слайд 2: Мета тренінгу -->
@@ -381,12 +697,9 @@ margin-bottom: 14px;
 
         <!-- Слайд 3: Проблема -->
         <section class="slide">
-
             <h2>Кейси для обговорення</h2>
-
             <div class="compare">
                 <div class="before">
-                    
                     <ul>
                         <li>Чи є у вас файли зі схожою назвою <code>«Урок_1_фінал_НОВИЙ.docx»</code>?</li>
                         <li>Файли з навчальними матеріалами знаходяться на робочому столі комп'ютера?</li>
@@ -394,29 +707,26 @@ margin-bottom: 14px;
                         <li>Витрачаєте час на пошук необхідних матеріалів?</li>
                     </ul>
                 </div>
-</div>
-<p></p>
-<h3 align="center"> Якщо ви, хоча б двічі, відповіли "ТАК", вітаємо - у ваших файлах ХАОС❌</h3>
-</section>
-                
- <!-- Слайд 4: Рішення -->
-<section class="slide">
-<h2>Рішення</h2>
-<div class="compare">
-<div class="after">
-                    
+            </div>
+            <p></p>
+            <h3 align="center">Якщо ви, хоча б двічі, відповіли "ТАК", вітаємо - у ваших файлах ХАОС❌</h3>
+        </section>
 
+        <!-- Слайд 4: Рішення -->
+        <section class="slide">
+            <h2>Рішення</h2>
+            <div class="compare">
+                <div class="after">
                     <ul>
                         <li>Єдина система назв</li>
                         <li>Логічна структура папок</li>
                         <li>Лише актуальна версія</li>
                         <li>Швидкий доступ за лінком з будь-якого місця й пристрою</li>
-                     
                     </ul>
                 </div>
             </div>
-<p></p>
-<h3 align="center">✅ Структурований цифровий посібник</h3>
+            <p></p>
+            <h3 align="center">✅ Структурований цифровий посібник</h3>
         </section>
 
         <!-- Слайд 5: Крок 1 — Підготовка матеріалів -->
@@ -426,25 +736,20 @@ margin-bottom: 14px;
             <ul class="steps">
                 <li><strong>Знайдіть готову або створіть нову презентацію до уроку.</strong></li>
                 <li><strong>Збережіть її у форматі PDF.</strong></li>
-<li><strong>У назві файлу не використовуйте пробіли!  Дозволені лише дефіс або нижнє підкреслення.</strong>
-<p>Наприклад: Інформаційні_війни.pdf</p>
-
-</li>
-             
+                <li><strong>У назві файлу не використовуйте пробіли! Дозволені лише дефіс або нижнє підкреслення.</strong>
+                    <p>Наприклад: Інформаційні_війни.pdf</p>
+                </li>
             </ul>
         </section>
 
         <!-- Слайд 6: Крок 2 — Реєстрація на github.com  -->
         <section class="slide">
             <h2>Крок 2. Реєстрація на GitHub</h2>
-           
             <ul class="steps">
-                <li><strong>Перейдіть</strong> за покликанням <a href="https://github.com/signup" target="_blank">GitHub</a> та пройдіть процедуру реєстрації. </li>
-      <li><strong>Натисніти «Continue with Google»</strong>, щоб швидко зареєструватися через обліковий запис Google. </li>
-<li><strong>Введіть унікальне ім'я користувача.</strong> Це ім'я буде вашим публічним ідентифікатором на GitHub, тому рекомендується використовувати професійний варіант.</li>
-<li><strong>Завершіть</strong> процедуру реєстрації.</li>
-
-         
+                <li><strong>Перейдіть</strong> за покликанням <a href="https://github.com/signup" target="_blank" rel="noopener">GitHub</a> та пройдіть процедуру реєстрації.</li>
+                <li><strong>Натисніти «Continue with Google»</strong>, щоб швидко зареєструватися через обліковий запис Google.</li>
+                <li><strong>Введіть унікальне ім'я користувача.</strong> Це ім'я буде вашим публічним ідентифікатором на GitHub, тому рекомендується використовувати професійний варіант.</li>
+                <li><strong>Завершіть</strong> процедуру реєстрації.</li>
             </ul>
         </section>
 
@@ -457,71 +762,62 @@ margin-bottom: 14px;
             <ol class="steps">
                 <li>Увійдіть у свій акаунт на <strong>GitHub.</strong></li>
                 <li>Натисніть кнопку <code>New repository</code>.</li>
-                <li>У полі <code>Repository name</code> введіть назву репозиторію.</li> 
-<div class="note">
+                <li>У полі <code>Repository name</code> введіть назву репозиторію.</li>
+            </ol>
+            <div class="note">
                 💡 <strong>Назва репозиторію вводиться літерами ЛАТИНСЬКОГО алфавіту, дефіс або нижнє підкреслення замість пробілу!</strong><br>
-<strong>Наприклад:</strong><code> informatyka_10_klas</code>
+                <strong>Наприклад:</strong> <code>informatyka_10_klas</code>
             </div>
-<li>Натисніть кнопку <code>Create repository</code>.</li>
+            <ol class="steps" start="4" style="counter-reset: step 3;">
+                <li>Натисніть кнопку <code>Create repository</code>.</li>
+            </ol>
+        </section>
 
-</ol>
-</section>
-
- <!-- Слайд 8: Крок 4 — Створення папки -->
-<section class="slide">
- <h2>Крок 4. Створення папки в GitHub</h2>
-
-<ol class="steps">
+        <!-- Слайд 8: Крок 4 — Створення папки -->
+        <section class="slide">
+            <h2>Крок 4. Створення папки в GitHub</h2>
+            <ol class="steps">
                 <li>Відкрийте створений репозиторій</li>
                 <li>Натисніть кнопку <code>Creating a new file</code>.</li>
-                <li>У полі <code>Name your file</code> введіть назву папки літерами ЛАТИНСЬКОГО алфавіту та скісну риску.<br> 
-Наприклад: <code>10-klas/</code>.</li> 
-
-
-
-
- <li>У новому полі <code>Name your file</code> введіть назву файлу.<br> 
-Наприклад: <code>blank</code>.</li> 
-<div class="note">
-                💡 <strong>GitHub не дозволяє створювати порожні папки, тому цей порожній файл є своєрідною імітацією вмісту</strong><br>
-
+                <li>У полі <code>Name your file</code> введіть назву папки літерами ЛАТИНСЬКОГО алфавіту та скісну риску.<br>
+                    Наприклад: <code>10-klas/</code>.</li>
+                <li>У новому полі <code>Name your file</code> введіть назву файлу.<br>
+                    Наприклад: <code>blank</code>.</li>
+            </ol>
+            <div class="note">
+                💡 <strong>GitHub не дозволяє створювати порожні папки, тому цей порожній файл є своєрідною імітацією вмісту</strong>
             </div>
-
-<li>Натисніть кнопку <code>Commit  changes</code>.</li>
-<li>Ще раз натисніть кнопку <code>Commit  changes</code>.</li>
-
-</ol>
-</section>
-
-
+            <ol class="steps" start="5" style="counter-reset: step 4;">
+                <li>Натисніть кнопку <code>Commit changes</code>.</li>
+                <li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+            </ol>
+        </section>
 
         <!-- Слайд 9: Крок 5 — Завантаження файлу -->
         <section class="slide">
             <h2>Крок 5. Завантаження файлу</h2>
-         <ol class="steps">
+            <ol class="steps">
                 <li>Відкрийте створену папку</li>
                 <li>Натисніть кнопку <code>Upload files</code>.</li>
-<li>Натисніть <code>Choose your files</code>.</li>
-                <li>Оберіть файл презентації, яку ви зберегли у форматі PDF.</li> 
-<li>Натисніть кнопку <code>Commit  changes</code>.</li>
-<li>Ваш файл збережено у папку.</li>
-</ol>
-  
+                <li>Натисніть <code>Choose your files</code>.</li>
+                <li>Оберіть файл презентації, яку ви зберегли у форматі PDF.</li>
+                <li>Натисніть кнопку <code>Commit changes</code>.</li>
+                <li>Ваш файл збережено у папку.</li>
+            </ol>
         </section>
- 
-<!-- Слайд 10: Крок 6 — Створення посібника -->
+
+        <!-- Слайд 10: Крок 6 — Створення посібника -->
         <section class="slide">
             <h2>Крок 6. Створення цифрового посібника</h2>
-            <p>
-<div class="note">
-                💡<strong>Цифровий посібник</strong> — це сторінка зі змістом, де кожен розділ, тема або урок має своє посилання.</div></p>
-<h3 align="center"> Базова структура сторінки зі змістом:</h3>
+            <div class="note">
+                💡 <strong>Цифровий посібник</strong> — це сторінка зі змістом, де кожен розділ, тема або урок має своє посилання.
+            </div>
+            <h3 align="center">Базова структура сторінки зі змістом:</h3>
             <ul class="steps">
                 <li><strong>Заголовок</strong> — назва курсу або теми.<br>
- Наприклад: «Інформатика. 10 клас. Основний рівень»).</li>
+                    Наприклад: «Інформатика. 10 клас. Основний рівень».</li>
                 <li><strong>Зміст</strong> — перелік розділів і уроків.</li>
                 <li><strong>Посилання на файли</strong> — відкриваються в новій вкладці.</li>
-                
             </ul>
         </section>
 
@@ -551,58 +847,51 @@ margin-bottom: 14px;
         <!-- Слайд 12: Створення сторінки змісту -->
         <section class="slide">
             <h2>Крок 7. Створення сторінки змісту</h2>
-            
             <ol class="steps">
                 <li>Відкрийте свій репозиторій на GitHub.</li>
-
-
-<li>Натисніть на <code> Create new file</code></li>
-               <li>У полі <code> Name your file</code>введіть назву <code>index.html</code></li>
-<li>Натисніть кнопку <code>Commit changes</code>.</li>
-<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
-        </ol>
+                <li>Натисніть на <code>Create new file</code></li>
+                <li>У полі <code>Name your file</code> введіть назву <code>index.html</code></li>
+                <li>Натисніть кнопку <code>Commit changes</code>.</li>
+                <li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+            </ol>
         </section>
 
-
-<!-- Слайд 13: Редагування файлу-сторінки змісту -->
+        <!-- Слайд 13: Редагування файлу-сторінки змісту -->
         <section class="slide">
             <h2>Крок 8. Редагування сторінки змісту</h2>
-            
             <ol class="steps">
-<li>Скопіюйте надісланий код.</li>
-<li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
-<li>Оберіть в меню <code>Edit file</code> і вставте скопійований код.</li>
-<li>Натисніть кнопку <code>Commit changes</code>.</li>
-<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
-        </ol>
+                <li>Скопіюйте надісланий код.</li>
+                <li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
+                <li>Оберіть в меню <code>Edit file</code> і вставте скопійований код.</li>
+                <li>Натисніть кнопку <code>Commit changes</code>.</li>
+                <li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+            </ol>
         </section>
-<!-- Слайд 14: Прикріплення файлу -->
+
+        <!-- Слайд 14: Прикріплення файлу -->
         <section class="slide">
             <h2>Крок 9. Прикріплення файлу в зміст</h2>
-            
             <ol class="steps">
-<li>Відкрийте раніше створену папку <code>10-klas</code>. Натистіть на PDF-файл і скопіюйте шлях до нього</li>
-<li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
-<li>Оберіть в меню <code>Edit file</code> і замініть шлях до файлу <code>a href="<font color="red">files/urok-1.pdf</font>" </code> на скопійований.</li>
-<li>Натисніть кнопку <code>Commit changes</code>.</li>
-<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
-        </ol>
+                <li>Відкрийте раніше створену папку <code>10-klas</code>. Натисніть на PDF-файл і скопіюйте шлях до нього</li>
+                <li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
+                <li>Оберіть в меню <code>Edit file</code> і замініть шлях до файлу <code>a href="<font color="red">files/urok-1.pdf</font>"</code> на скопійований.</li>
+                <li>Натисніть кнопку <code>Commit changes</code>.</li>
+                <li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+            </ol>
         </section>
 
-
-<!-- Слайд 15: Публікація -->
+        <!-- Слайд 15: Публікація -->
         <section class="slide">
-            <h2>Крок 10. Публікація цифрового посібника</h2>
+            <h2>Публікація цифрового посібника</h2>
             <ol class="steps">
-                <li>Оберіть із меню пункт <code>Settings</code>. </li>
-                <li>Знайдіть і натисніть<code>Pages</code>.</li>
+                <li>Оберіть із меню пункт <code>Settings</code>.</li>
+                <li>Знайдіть і натисніть <code>Pages</code>.</li>
                 <li>У розділі <code>Branch</code> змініть <code>None</code> на <code>main</code></li>
-<li>Натистіть<code>Save</code></li>
-<li>Зачекайти кілька хвилин, поки GitHub створить поклиння на сайт</li>
-<li>Натисніть <code>Visit site</code> </li>
-<li>Насолоджуйтесь результатом своєї роботи!</li>
+                <li>Натисніть <code>Save</code></li>
+                <li>Зачекайте кілька хвилин, поки GitHub створить покликання на сайт</li>
+                <li>Натисніть <code>Visit site</code></li>
+                <li>Насолоджуйтесь результатом своєї роботи!</li>
             </ol>
-            
         </section>
 
         <!-- Слайд 16: Рефлексія -->
@@ -612,13 +901,12 @@ margin-bottom: 14px;
                 <li>Чи готові ви до створення цифрового посібника?</li>
                 <li>Який крок здався найскладнішим?</li>
             </ul>
-           
         </section>
 
     </main>
 
     <footer>
-        <div class="progress" id="progressText">Слайд 1 з 10</div>
+        <div class="progress" id="progressText">Слайд 1 з 16</div>
         <div class="nav-buttons">
             <button id="prevBtn" disabled>← Назад</button>
             <button id="nextBtn">Далі →</button>
@@ -640,6 +928,8 @@ margin-bottom: 14px;
             nextBtn.disabled = index === slides.length - 1;
             progressText.textContent = `Слайд ${index + 1} з ${slides.length}`;
             progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+            // Прокрутити слайд догори при перемиканні (важливо на мобільних)
+            slides[index].scrollTop = 0;
         }
 
         prevBtn.addEventListener('click', () => {
@@ -658,6 +948,29 @@ margin-bottom: 14px;
                 current--; showSlide(current);
             }
         });
+
+        // ДОДАНО: свайпи на мобільних
+        let touchStartX = 0;
+        let touchStartY = 0;
+        const container = document.getElementById('slidesContainer');
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            const diffX = e.changedTouches[0].screenX - touchStartX;
+            const diffY = e.changedTouches[0].screenY - touchStartY;
+            // Свайп лише якщо горизонтальний рух більший за вертикальний
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX < 0 && current < slides.length - 1) {
+                    current++; showSlide(current);
+                } else if (diffX > 0 && current > 0) {
+                    current--; showSlide(current);
+                }
+            }
+        }, { passive: true });
 
         showSlide(0);
     </script>
