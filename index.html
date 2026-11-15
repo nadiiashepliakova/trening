@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інформатика 10 клас основний рівень</title>
+    <title>Тренінг: Від хаосу у файлах до структурованого цифрового посібника</title>
     <style>
-        /* Скидання стилів */
         * {
             margin: 0;
             padding: 0;
@@ -15,43 +14,207 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: #e8f5e9; /* дуже світлий зелений */
-            color: #2e7d32; /* темно-зелений текст */
+            background-color: #e8f5e9;
+            color: #2e7d32;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
-        /* Шапка */
-        header {
-            background-color: #a5d6a7; /* світло-зелений */
-            padding: 20px 40px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            color: #1b5e20;
-            line-height: 1.3;
-        }
-
-        /* Основна частина */
+        /* Слайди */
         main {
             flex: 1;
-            padding: 40px;
-            background-color: #f1f8e9; /* майже білий із зеленим відтінком */
+            position: relative;
+            overflow: hidden;
         }
 
-        main h2 {
-            text-align: center;
+        .slide {
+            position: absolute;
+            inset: 0;
+            padding: 40px 60px;
+            background-color: #f1f8e9;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide h2 {
             color: #1b5e20;
+            font-size: 2em;
             margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.2;
         }
 
-        /* Список файлів */
+        .slide h3 {
+            color: #2e7d32;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        .slide p {
+            font-size: 1.15em;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .slide ul, .slide ol {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 24px;
+        }
+
+        .slide li {
+            margin-bottom: 10px;
+        }
+
+        /* Титульний слайд */
+        .title-slide {
+            text-align: center;
+        }
+
+        .title-slide h2 {
+            font-size: 2.4em;
+            margin-bottom: 24px;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.3em;
+            color: #388e3c;
+            margin-bottom: 0;
+        }
+
+        /* Сітка карток */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto 0;
+        }
+
+        .card {
+            background-color: #c8e6c9;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #66bb6a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+        }
+
+        .card .num {
+            display: inline-block;
+            background-color: #66bb6a;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card strong {
+            display: block;
+            color: #1b5e20;
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .card span {
+            font-size: 0.95em;
+            color: #2e7d32;
+        }
+
+        /* Покроковий алгоритм */
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            position: relative;
+            padding: 14px 16px 14px 60px;
+            margin-bottom: 10px;
+            background-color: #c8e6c9;
+            border-radius: 10px;
+            border-left: 4px solid #66bb6a;
+            font-size: 1.02em;
+            line-height: 1.4;
+            counter-increment: step;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: #66bb6a;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        .steps code {
+            background-color: #f1f8e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #1b5e20;
+        }
+code {
+            background-color: #f1f8e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #1b5e20;
+        }
+
+
+        .note {
+            max-width: 900px;
+            margin: 14px auto 0;
+margin-bottom: 14px;
+            padding: 12px 16px;
+            background-color: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            border-radius: 8px;
+            font-size: 0.98em;
+            text-align: left;
+        }
+
+        /* Демонстраційний список файлів */
         .file-list {
             list-style: none;
             max-width: 600px;
-            margin: 0; /* вирівнювання за лівим краєм */
+            margin: 0 auto;
+            padding: 0;
         }
 
         .file-list li {
@@ -81,51 +244,423 @@
             font-size: 1.1em;
         }
 
-        /* Підвал */
+        /* Порівняння до/після */
+        .compare {
+            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 20px auto 0;
+        }
+
+        .compare > div {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .compare .before {
+            background-color: #ffebee;
+            border-left: 5px solid #e57373;
+        }
+
+        .compare .after {
+            background-color: #c8e6c9;
+            border-left: 5px solid #66bb6a;
+        }
+
+        .compare h3 {
+            margin-bottom: 12px;
+        }
+
+        .compare ul {
+            padding-left: 20px;
+            font-size: 1em;
+        }
+
+        /* Підвал з навігацією */
         footer {
             background-color: #c8e6c9;
-            padding: 20px 40px;
-            text-align: center;
-            color: #2e7d32;
+            padding: 14px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-top: 2px solid #a5d6a7;
+            z-index: 10;
+        }
+
+        .progress {
+            font-size: 0.95em;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            background-color: #66bb6a;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-family: inherit;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #4caf50;
+        }
+
+        button:disabled {
+            background-color: #a5d6a7;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Прогрес-бар */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #66bb6a;
+            transition: width 0.3s ease;
+            z-index: 20;
+        }
+
+        @media (max-width: 700px) {
+            .slide { padding: 30px 24px; }
+            .slide h2 { font-size: 1.5em; }
+            .compare { grid-template-columns: 1fr; }
+            .steps li { font-size: 0.95em; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>
-            Інформатика<br>
-            10 клас<br>
-            основний рівень
-        </h1>
-    </header>
+    <div class="progress-bar" id="progressBar"></div>
 
-    <main>
-        <h2>Зміст</h2>
+    <main id="slidesContainer">
 
-        <ul class="file-list">
-            <li>
-                <a href="files/urok-1.pdf" target="_blank" rel="noopener noreferrer">
-                    Урок 1. Вступ до інформатики (PDF)
-                </a>
-            </li>
-            <li>
-                <a href="files/urok-2.docx" target="_blank" rel="noopener noreferrer">
-                    Урок 2. Апаратне забезпечення (DOCX)
-                </a>
-            </li>
-            <li>
-                <a href="information_wars/Інформаційні_війни.pdf" target="_blank" rel="noopener noreferrer">
-                    Урок 16. Інформаційні війни
-                </a>
-            </li>
-        </ul>
+        <!-- Слайд 1: Титульний -->
+        <section class="slide title-slide active">
+            <h2>Від хаосу в файлах<br>до структурованого цифрового посібника</h2>
+            <p class="subtitle">Практичний тренінг для вчителів ліцею</p>
+<p></p>
+ <p align="right">Тренери: Юлія Осталецька та Надія Шеплякова</p>
+
+        </section>
+
+        <!-- Слайд 2: Мета тренінгу -->
+        <section class="slide">
+            <h2>Мета тренінгу</h2>
+            <p>Навчитися перетворювати набір файлів на зрозумілий, структурований цифровий посібник, який зручно використовувати на уроках, систематично доповнювати й редагувати.</p>
+            <div class="cards">
+                <div class="card">
+                    <span class="num">1</span>
+                    <strong>Порядок у файлах</strong>
+                    <span>Єдина система назв і папок</span>
+                </div>
+                <div class="card">
+                    <span class="num">2</span>
+                    <strong>Швидкий доступ</strong>
+                    <span>Учні знаходять матеріали за лічені секунди</span>
+                </div>
+                <div class="card">
+                    <span class="num">3</span>
+                    <strong>Готовий посібник</strong>
+                    <span>Інтерактивний цифровий ресурс</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 3: Проблема -->
+        <section class="slide">
+
+            <h2>Кейси для обговорення</h2>
+
+            <div class="compare">
+                <div class="before">
+                    
+                    <ul>
+                        <li>Чи є у вас файли зі схожою назвою <code>«Урок_1_фінал_НОВИЙ.docx»</code>?</li>
+                        <li>Файли з навчальними матеріалами знаходяться на робочому столі комп'ютера?</li>
+                        <li>Маєте дублікати та застарілі версії одного уроку?</li>
+                        <li>Витрачаєте час на пошук необхідних матеріалів?</li>
+                    </ul>
+                </div>
+</div>
+<p></p>
+<h3 align="center"> Якщо ви, хоча б двічі, відповіли "ТАК", вітаємо - у ваших файлах ХАОС❌</h3>
+</section>
+                
+ <!-- Слайд 4: Рішення -->
+<section class="slide">
+<h2>Рішення</h2>
+<div class="compare">
+<div class="after">
+                    
+
+                    <ul>
+                        <li>Єдина система назв</li>
+                        <li>Логічна структура папок</li>
+                        <li>Лише актуальна версія</li>
+                        <li>Швидкий доступ за лінком з будь-якого місця й пристрою</li>
+                     
+                    </ul>
+                </div>
+            </div>
+<p></p>
+<h3 align="center">✅ Структурований цифровий посібник</h3>
+        </section>
+
+        <!-- Слайд 5: Крок 1 — Підготовка матеріалів -->
+        <section class="slide">
+            <h2>Крок 1. Підготовка матеріалів</h2>
+            <p></p>
+            <ul class="steps">
+                <li><strong>Знайдіть готову або створіть нову презентацію до уроку.</strong></li>
+                <li><strong>Збережіть її у форматі PDF.</strong></li>
+<li><strong>У назві файлу не використовуйте пробіли!  Дозволені лише дефіс або нижнє підкреслення.</strong>
+<p>Наприклад: Інформаційні_війни.pdf</p>
+
+</li>
+             
+            </ul>
+        </section>
+
+        <!-- Слайд 6: Крок 2 — Реєстрація на github.com  -->
+        <section class="slide">
+            <h2>Крок 2. Реєстрація на GitHub</h2>
+           
+            <ul class="steps">
+                <li><strong>Перейдіть</strong> за покликанням <a href="https://github.com/signup" target="_blank">GitHub</a> та пройдіть процедуру реєстрації. </li>
+      <li><strong>Натисніти «Continue with Google»</strong>, щоб швидко зареєструватися через обліковий запис Google. </li>
+<li><strong>Введіть унікальне ім'я користувача.</strong> Це ім'я буде вашим публічним ідентифікатором на GitHub, тому рекомендується використовувати професійний варіант.</li>
+<li><strong>Завершіть</strong> процедуру реєстрації.</li>
+
+         
+            </ul>
+        </section>
+
+        <!-- Слайд 7: Крок 3 — Починаємо роботу в GitHub -->
+        <section class="slide">
+            <h2>Крок 3. Початок роботи в GitHub: створення нового репозиторію</h2>
+            <div class="note">
+                💡 <strong>Репозиторій</strong> на GitHub - це онлайн-сховище, своєрідна папка проєкту, де зберігається вихідний код, усі файли та історія змін.
+            </div>
+            <ol class="steps">
+                <li>Увійдіть у свій акаунт на <strong>GitHub.</strong></li>
+                <li>Натисніть кнопку <code>New repository</code>.</li>
+                <li>У полі <code>Repository name</code> введіть назву репозиторію.</li> 
+<div class="note">
+                💡 <strong>Назва репозиторію вводиться літерами ЛАТИНСЬКОГО алфавіту, дефіс або нижнє підкреслення замість пробілу!</strong><br>
+<strong>Наприклад:</strong><code> informatyka_10_klas</code>
+            </div>
+<li>Натисніть кнопку <code>Create repository</code>.</li>
+
+</ol>
+</section>
+
+ <!-- Слайд 8: Крок 4 — Створення папки -->
+<section class="slide">
+ <h2>Крок 4. Створення папки в GitHub</h2>
+
+<ol class="steps">
+                <li>Відкрийте створений репозиторій</li>
+                <li>Натисніть кнопку <code>Creating a new file</code>.</li>
+                <li>У полі <code>Name your file</code> введіть назву папки літерами ЛАТИНСЬКОГО алфавіту та скісну риску.<br> 
+Наприклад: <code>10-klas/</code>.</li> 
+
+
+
+
+ <li>У новому полі <code>Name your file</code> введіть назву файлу.<br> 
+Наприклад: <code>blank</code>.</li> 
+<div class="note">
+                💡 <strong>GitHub не дозволяє створювати порожні папки, тому цей порожній файл є своєрідною імітацією вмісту</strong><br>
+
+            </div>
+
+<li>Натисніть кнопку <code>Commit  changes</code>.</li>
+<li>Ще раз натисніть кнопку <code>Commit  changes</code>.</li>
+
+</ol>
+</section>
+
+
+
+        <!-- Слайд 9: Крок 5 — Завантаження файлу -->
+        <section class="slide">
+            <h2>Крок 5. Завантаження файлу</h2>
+         <ol class="steps">
+                <li>Відкрийте створену папку</li>
+                <li>Натисніть кнопку <code>Upload files</code>.</li>
+<li>Натисніть <code>Choose your files</code>.</li>
+                <li>Оберіть файл презентації, яку ви зберегли у форматі PDF.</li> 
+<li>Натисніть кнопку <code>Commit  changes</code>.</li>
+<li>Ваш файл збережено у папку.</li>
+</ol>
+  
+        </section>
+ 
+<!-- Слайд 10: Крок 6 — Створення посібника -->
+        <section class="slide">
+            <h2>Крок 6. Створення цифрового посібника</h2>
+            <p>
+<div class="note">
+                💡<strong>Цифровий посібник</strong> — це сторінка зі змістом, де кожен розділ, тема або урок має своє посилання.</div></p>
+<h3 align="center"> Базова структура сторінки зі змістом:</h3>
+            <ul class="steps">
+                <li><strong>Заголовок</strong> — назва курсу або теми.<br>
+ Наприклад: «Інформатика. 10 клас. Основний рівень»).</li>
+                <li><strong>Зміст</strong> — перелік розділів і уроків.</li>
+                <li><strong>Посилання на файли</strong> — відкриваються в новій вкладці.</li>
+                
+            </ul>
+        </section>
+
+        <!-- Слайд 11: Приклад цифрового посібника -->
+        <section class="slide">
+            <h2>Приклад: сторінка-зміст</h2>
+            <p>Так виглядає готовий цифровий посібник — файли відкриваються в новій вкладці.</p>
+            <ul class="file-list">
+                <li>
+                    <a href="files/urok-1.pdf" target="_blank" rel="noopener noreferrer">
+                        Урок 1. Вступ до інформатики
+                    </a>
+                </li>
+                <li>
+                    <a href="files/urok-2.docx" target="_blank" rel="noopener noreferrer">
+                        Урок 2. Апаратне забезпечення
+                    </a>
+                </li>
+                <li>
+                    <a href="files/praktychna-1.pdf" target="_blank" rel="noopener noreferrer">
+                        Практична робота №1
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Слайд 12: Створення сторінки змісту -->
+        <section class="slide">
+            <h2>Крок 7. Створення сторінки змісту</h2>
+            
+            <ol class="steps">
+                <li>Відкрийте свій репозиторій на GitHub.</li>
+
+
+<li>Натисніть на <code> Create new file</code></li>
+               <li>У полі <code> Name your file</code>введіть назву <code>index.html</code></li>
+<li>Натисніть кнопку <code>Commit changes</code>.</li>
+<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+        </ol>
+        </section>
+
+
+<!-- Слайд 13: Редагування файлу-сторінки змісту -->
+        <section class="slide">
+            <h2>Крок 8. Редагування сторінки змісту</h2>
+            
+            <ol class="steps">
+<li>Скопіюйте надісланий код.</li>
+<li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
+<li>Оберіть в меню <code>Edit file</code> і вставте скопійований код.</li>
+<li>Натисніть кнопку <code>Commit changes</code>.</li>
+<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+        </ol>
+        </section>
+<!-- Слайд 14: Прикріплення файлу -->
+        <section class="slide">
+            <h2>Крок 9. Прикріплення файлу в зміст</h2>
+            
+            <ol class="steps">
+<li>Відкрийте раніше створену папку <code>10-klas</code>. Натистіть на PDF-файл і скопіюйте шлях до нього</li>
+<li>Поверніться в репозиторій та відкрийте файл <code>index.html</code>.</li>
+<li>Оберіть в меню <code>Edit file</code> і замініть шлях до файлу <code>a href="<font color="red">files/urok-1.pdf</font>" </code> на скопійований.</li>
+<li>Натисніть кнопку <code>Commit changes</code>.</li>
+<li>Ще раз натисніть кнопку <code>Commit changes</code>.</li>
+        </ol>
+        </section>
+
+
+<!-- Слайд 15: Публікація -->
+        <section class="slide">
+            <h2>Публікація цифрового посібника</h2>
+            <ol class="steps">
+                <li>Оберіть із меню пункт <code>Settings</code>. </li>
+                <li>Знайдіть і натисніть<code>Pages</code>.</li>
+                <li>У розділі <code>Branch</code> змініть <code>None</code> на <code>main</code></li>
+<li>Натистіть<code>Save</code></li>
+<li>Зачекайти кілька хвилин, поки GitHub створить поклиння на сайт</li>
+<li>Натисніть <code>Visit site</code> </li>
+<li>Насолоджуйтесь результатом своєї роботи!</li>
+            </ol>
+            
+        </section>
+
+        <!-- Слайд 16: Рефлексія -->
+        <section class="slide">
+            <h2>Підсумки та рефлексія</h2>
+            <ul class="steps">
+                <li>Чи готові ви до створення цифрового посібника?</li>
+                <li>Який крок здався найскладнішим?</li>
+            </ul>
+           
+        </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2026 Усі права захищені</p>
+        <div class="progress" id="progressText">Слайд 1 з 10</div>
+        <div class="nav-buttons">
+            <button id="prevBtn" disabled>← Назад</button>
+            <button id="nextBtn">Далі →</button>
+        </div>
     </footer>
+
+    <script>
+        // === Навігація слайдами ===
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressText = document.getElementById('progressText');
+        const progressBar = document.getElementById('progressBar');
+        let current = 0;
+
+        function showSlide(index) {
+            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+            progressText.textContent = `Слайд ${index + 1} з ${slides.length}`;
+            progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (current > 0) { current--; showSlide(current); }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (current < slides.length - 1) { current++; showSlide(current); }
+        });
+
+        // Керування стрілками клавіатури
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && current < slides.length - 1) {
+                current++; showSlide(current);
+            } else if (e.key === 'ArrowLeft' && current > 0) {
+                current--; showSlide(current);
+            }
+        });
+
+        showSlide(0);
+    </script>
 
 </body>
 </html>
